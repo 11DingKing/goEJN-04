@@ -99,6 +99,7 @@ func (s *Service) RegisterBatteryCabin(bc domain.BatteryCabin) error {
 // active.
 func (s *Service) UpdateBatteryCabinTelemetry(id string, tempC, soc float64) (domain.BatteryCabin, bool, error) {
 	s.mu.Lock()
+	defer s.mu.Unlock()
 
 	bc, err := s.store.GetBatteryCabin(id)
 	if err != nil {
@@ -108,7 +109,6 @@ func (s *Service) UpdateBatteryCabinTelemetry(id string, tempC, soc float64) (do
 	bc.SOC = soc
 	alarmed := bc.EvaluateTemperature(s.cfg.BatteryTempThresholdC, s.now())
 	s.store.PutBatteryCabin(bc)
-	s.mu.Unlock()
 	return bc, alarmed, nil
 }
 
