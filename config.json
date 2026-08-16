@@ -1,0 +1,11 @@
+{
+  "server_port": 57579,
+  "read_timeout_seconds": 30,
+  "write_timeout_seconds": 30,
+  "battery_temp_threshold_c": 45.0,
+  "min_soc_percent": 15.0,
+  "workorder_accept_seconds": 900,
+  "blackstart_deadline_seconds": 1200,
+  "sms_resend_seconds": 30,
+  "scheduler_interval_seconds": 10
+}
